@@ -11,6 +11,7 @@ public class GameCanvas extends JPanel {
     Graphics graphics;
 
     Background background = new Background();
+    Player player = new Player();
 
     public GameCanvas() {
         this.setSize(1920, 1200);
@@ -29,8 +30,9 @@ public class GameCanvas extends JPanel {
 
     private void setupCharacter() {
         this.background = new Background(
-                this.loadImage("resources/background.png")
+                this.loadImage("resources/background.jpg")
         );
+        this.player = new Player(new Vector2D(500,500), this.loadImage("resources/player.png"));
     }
 
     @Override
@@ -39,10 +41,11 @@ public class GameCanvas extends JPanel {
     }
 
     public void renderAll() {
-        //this.graphics.setColor(Color.BLACK);
-        //this.graphics.fillRect(0, 0, 1920, 1200);
+//        this.graphics.setColor(Color.BLACK);
+//        this.graphics.fillRect(0, 0, 1920, 1200);
 
         this.background.render(graphics);
+        this.player.render(graphics);
         this.repaint();
     }
 
