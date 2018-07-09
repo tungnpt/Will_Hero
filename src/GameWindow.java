@@ -1,4 +1,6 @@
 import javax.swing.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -19,7 +21,42 @@ public class GameWindow extends JFrame {
     }
 
     private void event() {
+        this.keyboardEvent();
         this.windowEvent();
+    }
+
+    private void keyboardEvent() {
+        this.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+                    gameCanvas.player.position.x -= gameCanvas.player.velocity.x;
+                }
+                if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+                    gameCanvas.player.position.x += gameCanvas.player.velocity.x;
+                }
+                if (e.getKeyCode() == KeyEvent.VK_UP) {
+                    gameCanvas.player.position.y -= gameCanvas.player.velocity.y;
+                }
+                if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+                    if(gameCanvas.player.onIsland==false){
+                        gameCanvas.player.position.y += gameCanvas.player.velocity.y;
+                    }else{
+                        int velo = (int)gameCanvas.floatingIsland.position.y-(int)gameCanvas.player.position.y-(int)gameCanvas.player.height;
+                        gameCanvas.player.position.y += velo;
+                        gameCanvas.player.onIsland=false;
+                    }
+                }
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+            }
+        });
     }
 
     public void gameLoop() {
@@ -27,6 +64,7 @@ public class GameWindow extends JFrame {
             long currentTime = System.nanoTime();
             if (currentTime - this.lastTime >= 17_000_000) {
                 this.gameCanvas.renderAll();
+                this.gameCanvas.runAll();
                 this.lastTime = currentTime;
             }
 

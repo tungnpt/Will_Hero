@@ -12,6 +12,7 @@ public class GameCanvas extends JPanel {
 
     Background background = new Background();
     Player player = new Player();
+    FloatingIsland floatingIsland = new FloatingIsland();
 
     public GameCanvas() {
         this.setSize(1920, 1200);
@@ -33,6 +34,7 @@ public class GameCanvas extends JPanel {
                 this.loadImage("resources/background.jpg")
         );
         this.player = new Player(new Vector2D(500,500), this.loadImage("resources/player.png"));
+        this.floatingIsland = new FloatingIsland(new Vector2D(700,500), this.loadImage("resources/Picture1.png"),500,500);
     }
 
     @Override
@@ -40,11 +42,16 @@ public class GameCanvas extends JPanel {
         g.drawImage(this.backBuffered, 0, 0, null);
     }
 
+    public void runAll(){
+        this.floatingIsland.run(this.player);
+    }
+
     public void renderAll() {
 //        this.graphics.setColor(Color.BLACK);
 //        this.graphics.fillRect(0, 0, 1920, 1200);
 
         this.background.render(graphics);
+        this.floatingIsland.render(graphics);
         this.player.render(graphics);
         this.repaint();
     }
