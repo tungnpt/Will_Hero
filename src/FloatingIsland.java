@@ -3,20 +3,18 @@ import java.awt.image.BufferedImage;
 
 public class FloatingIsland extends GameObject {
     public BufferedImage image;
-    public int width;
-    public int height;
-    //public BoxCollider boxCollider;
 
     public FloatingIsland() {
         super();
+        this.velocity= new Vector2D(-50f,0);
     }
 
     public FloatingIsland(Vector2D position, BufferedImage image, int width, int height) {
         this.position.set(position);
         this.image = image;
         this.width=width;
-        this.height=height;
-        //this.boxCollider = new BoxCollider(width, height);
+        this.height=height;;
+        this.velocity= new Vector2D(-30f,0);
     }
 
     public void run(Player player){
@@ -30,6 +28,10 @@ public class FloatingIsland extends GameObject {
         ) ){
             player.onIsland=true;
             //player.templeVelocity.set(new Vector2D(0, this.position.y-player.position.y-height));
+        }
+
+        if (KeyboardInput.instance.isSpace) {
+            this.position.addUp(this.velocity);
         }
     }
 
