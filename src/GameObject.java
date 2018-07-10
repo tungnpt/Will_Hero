@@ -13,6 +13,10 @@ public class GameObject {
         this.position = new Vector2D();
     }
 
+    public void run(){
+
+    }
+
     public void render(Graphics graphics) {
 
     }

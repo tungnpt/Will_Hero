@@ -17,18 +17,18 @@ public class FloatingIsland extends GameObject {
         this.velocity= new Vector2D(-30f,0);
     }
 
-    public void run(Player player){
-        if((player.position.x>=this.position.x
-                && player.position.x+25<=this.position.x+this.width
-                && player.position.y+player.height+player.velocity.y>=this.position.y
-                )
-                || (player.position.x+player.width-25>=this.position.x
-                && player.position.x+player.width<=this.position.x+this.width
-                && player.position.y+player.height+player.velocity.y>=this.position.y
-        ) ){
-            player.onIsland=true;
-            //player.templeVelocity.set(new Vector2D(0, this.position.y-player.position.y-height));
-        }
+    public void run(){
+//        if((player.position.x>=this.position.x
+//                && player.position.x+25<=this.position.x+this.width
+//                && player.position.y+player.height+player.velocity.y>=this.position.y
+//                )
+//                || (player.position.x+player.width-25>=this.position.x
+//                && player.position.x+player.width<=this.position.x+this.width
+//                && player.position.y+player.height+player.velocity.y>=this.position.y
+//        ) ){
+//            player.onIsland=true;
+//            //player.templeVelocity.set(new Vector2D(0, this.position.y-player.position.y-height));
+//        }
 
         if (KeyboardInput.instance.isSpace) {
             this.position.addUp(this.velocity);

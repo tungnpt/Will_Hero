@@ -5,6 +5,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class GameCanvas extends JPanel {
     BufferedImage backBuffered;
@@ -13,7 +14,6 @@ public class GameCanvas extends JPanel {
     Background background = new Background();
     Player player = new Player();
     FloatingIsland floatingIsland = new FloatingIsland();
-    ArrayList<FloatingIsland> floatingIslands = new ArrayList<>();
 
     public GameCanvas() {
         this.setSize(1920, 1200);
@@ -34,8 +34,12 @@ public class GameCanvas extends JPanel {
         this.background = new Background(
                 this.loadImage("resources/background.jpg")
         );
-        this.player = new Player(new Vector2D(200,200), this.loadImage("resources/player.png"));
-        this.floatingIsland = new FloatingIsland(new Vector2D(1920,500), this.loadImage("resources/Picture1.png"),500,500);
+        this.player = new Player(new Vector2D(300,200), this.loadImage("resources/player.png"));
+        this.floatingIsland = new FloatingIsland(new Vector2D(1920,600),
+                this.loadImage("resources/Island1.png"),
+                600,
+                400);
+        //GameObjectManager.instance.add(new CreateIsland());
     }
 
     @Override
@@ -44,13 +48,18 @@ public class GameCanvas extends JPanel {
     }
 
     public void runAll(){
+        if(OnIsland.checkOnIsland(player,floatingIsland)){
+            player.onIsland = true;
+        }
         this.player.run(floatingIsland);
-        this.floatingIsland.run(this.player);
+        this.floatingIsland.run();
+        //GameObjectManager.instance.runAll();
     }
 
     public void renderAll() {
         this.background.render(graphics);
         this.floatingIsland.render(graphics);
+        //GameObjectManager.instance.renderAll(graphics);
         this.player.render(graphics);
         this.repaint();
     }
