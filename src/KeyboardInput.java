@@ -23,19 +23,19 @@ public class KeyboardInput implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_UP) {
-            this.isUp = true;
-        }
-        if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-            this.isLeft = true;
-        }
-        if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-            this.isRight = true;
-        }
-
-        if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-            this.isDown = true;
-        }
+//        if (e.getKeyCode() == KeyEvent.VK_UP) {
+//            this.isUp = true;
+//        }
+//        if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+//            this.isLeft = true;
+//        }
+//        if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+//            this.isRight = true;
+//        }
+//
+//        if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+//            this.isDown = true;
+//        }
         if (e.getKeyCode() == KeyEvent.VK_SPACE) {
             this.isSpace = true;
         }
@@ -43,19 +43,19 @@ public class KeyboardInput implements KeyListener {
 
     @Override
     public void keyReleased(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_UP) {
-            this.isUp = false;
-        }
-        if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-            this.isLeft = false;
-        }
-        if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-            this.isRight = false;
-        }
-
-        if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-            this.isDown = false;
-        }
+//        if (e.getKeyCode() == KeyEvent.VK_UP) {
+//            this.isUp = false;
+//        }
+//        if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+//            this.isLeft = false;
+//        }
+//        if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+//            this.isRight = false;
+//        }
+//
+//        if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+//            this.isDown = false;
+//        }
         if (e.getKeyCode() == KeyEvent.VK_SPACE) {
             this.isSpace = false;
         }

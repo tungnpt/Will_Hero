@@ -35,8 +35,8 @@ public class GameCanvas extends JPanel {
                 this.loadImage("resources/background.jpg")
         );
         this.player = new Player(new Vector2D(300,200), this.loadImage("resources/player.png"));
-        this.floatingIsland = new FloatingIsland(new Vector2D(1920,600),
-                this.loadImage("resources/Island1.png"),
+        this.floatingIsland = new FloatingIsland(new Vector2D(200,600),
+                this.loadImage("resources/Island3.png"),
                 600,
                 400);
         //GameObjectManager.instance.add(new CreateIsland());
@@ -49,7 +49,8 @@ public class GameCanvas extends JPanel {
 
     public void runAll(){
         if(OnIsland.checkOnIsland(player,floatingIsland)){
-            player.onIsland = true;
+            //player.onIsland = true;
+            player.isFalling = false;
         }
         this.player.run(floatingIsland);
         this.floatingIsland.run();

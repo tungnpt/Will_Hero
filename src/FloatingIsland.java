@@ -14,7 +14,7 @@ public class FloatingIsland extends GameObject {
         this.image = image;
         this.width=width;
         this.height=height;;
-        this.velocity= new Vector2D(-30f,0);
+        this.velocity= new Vector2D(-5f,0);
     }
 
     public void run(){
