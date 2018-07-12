@@ -11,7 +11,7 @@ public class GameObjectManager {
 
     public static GameObjectManager instance = new GameObjectManager();
 
-    private ArrayList<GameObject> list = new ArrayList<>();
+    public ArrayList<GameObject> list = new ArrayList<>();
     private ArrayList<GameObject> tempList = new ArrayList<>();
 
     private Random random;
@@ -25,11 +25,21 @@ public class GameObjectManager {
     }
 
     public void runAll() {
-        this.list
-                .stream()
-                .forEach(gameObject -> gameObject.run());
-        this.list.addAll(this.tempList);
-        this.tempList.clear();
+        if (KeyboardInput.instance.isSpace) {
+            for (int i = 0; i < list.size(); i++) {
+                if (this.list.get(i) instanceof FloatingIsland) {
+                    if (this.list.get(i).position.x + this.list.get(i).width < 0) {
+                        list.remove(i);
+                    }
+                }
+            }
+            this.list
+                    .stream()
+                    .forEach(gameObject -> gameObject.run());
+            this.list.addAll(this.tempList);
+            this.tempList.clear();
+            System.out.println(this.list.size());
+        }
     }
 
     public void renderAll(Graphics graphics) {
@@ -55,6 +65,15 @@ public class GameObjectManager {
         } catch (IOException e) {
             return null;
         }
+    }
+    public int getSize(){
+        return this.list.size();
+    }
+    public FloatingIsland getIsland(int i){
+        if(this.list.get(i) instanceof FloatingIsland) {
+            return (FloatingIsland) this.list.get(i);
+        }
+        return new FloatingIsland();
     }
 
 }

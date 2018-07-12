@@ -15,6 +15,8 @@ public class GameCanvas extends JPanel {
     Player player = new Player();
     FloatingIsland floatingIsland = new FloatingIsland();
 
+    FloatingIsland tempIsland = new FloatingIsland();
+
     public GameCanvas() {
         this.setSize(1920, 1200);
 
@@ -36,9 +38,10 @@ public class GameCanvas extends JPanel {
         );
         this.player = new Player(new Vector2D(300,200), this.loadImage("resources/player.png"));
         this.floatingIsland = new FloatingIsland(new Vector2D(200,600),
-                this.loadImage("resources/Island3.png"),
-                600,
+                this.loadImage("resources/Island4.png"),
+                1200,
                 400);
+
         //GameObjectManager.instance.add(new CreateIsland());
     }
 
@@ -52,6 +55,7 @@ public class GameCanvas extends JPanel {
             //player.onIsland = true;
             player.isFalling = false;
         }
+
         this.player.run(floatingIsland);
         this.floatingIsland.run();
         //GameObjectManager.instance.runAll();
@@ -60,7 +64,7 @@ public class GameCanvas extends JPanel {
     public void renderAll() {
         this.background.render(graphics);
         this.floatingIsland.render(graphics);
-        //GameObjectManager.instance.renderAll(graphics);
+       // GameObjectManager.instance.renderAll(graphics);
         this.player.render(graphics);
         this.repaint();
     }

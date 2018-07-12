@@ -7,27 +7,27 @@ import java.util.Random;
 public class CreateIsland extends GameObject {
     private FrameCounter frameCounter;
     private Random random;
-    private Vector2D previousIslandPosition;
+    private int previousIslandPositionX = 0;
+
+    FloatingIsland island;
 
     public CreateIsland() {
-        //this.frameCounter = new FrameCounter(30);
+        this.frameCounter = new FrameCounter(30);
         this.random = new Random();
-        this.previousIslandPosition = new Vector2D();
     }
 
     public void run() {
-        int temp = random.nextInt(3)+1;
-        this.previousIslandPosition.set(GameObjectManager.instance.getTheLastIsland().position);
-        //FloatingIsland floatingIsland = new FloatingIsland();
-//        floatingIsland.position.set(this.previousIslandPosition.x + this.random.nextInt(100) + 200,
-//                this.random.nextInt(100) + 500
-//        );
-        FloatingIsland floatingIsland = new FloatingIsland(previousIslandPosition,
-                this.loadImage("resources/Island" + temp +" .png"),
-                random.nextInt(100)+500,
-                400
-        );
-        GameObjectManager.instance.add(floatingIsland);
+        if(this.frameCounter.run()) {
+            island = new FloatingIsland(new Vector2D(previousIslandPositionX + random.nextInt(100) + 100,
+                    random.nextInt(100) + 500),
+                    this.loadImage("resources/Island1.png"),
+                    random.nextInt(100) + 500,
+                    400
+            );
+            previousIslandPositionX = (int) island.position.x + island.width;
+            GameObjectManager.instance.add(island);
+            this.frameCounter.reset();
+        }
     }
     private BufferedImage loadImage(String path) {
         try {

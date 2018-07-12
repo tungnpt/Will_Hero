@@ -6,7 +6,8 @@ public class FloatingIsland extends GameObject {
 
     public FloatingIsland() {
         super();
-        this.velocity= new Vector2D(-50f,0);
+        this.position = new Vector2D();
+        this.velocity= new Vector2D(50f,0);
     }
 
     public FloatingIsland(Vector2D position, BufferedImage image, int width, int height) {
@@ -14,7 +15,15 @@ public class FloatingIsland extends GameObject {
         this.image = image;
         this.width=width;
         this.height=height;;
-        this.velocity= new Vector2D(-5f,0);
+        this.velocity= new Vector2D(25f,0);
+    }
+
+    public void set(FloatingIsland FI){
+        this.position = FI.position;
+        this.image = FI.image;
+        this.width = FI.width;
+        this.height = FI.height;
+        this.velocity= new Vector2D(100f,0);
     }
 
     public void run(){
@@ -31,7 +40,7 @@ public class FloatingIsland extends GameObject {
 //        }
 
         if (KeyboardInput.instance.isSpace) {
-            this.position.addUp(this.velocity);
+            this.position.subtractBy(this.velocity);
         }
     }
 
