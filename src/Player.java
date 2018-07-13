@@ -6,8 +6,8 @@ public class Player extends GameObject {
     public boolean onIsland = false;
     public boolean isFalling = true;
 
-    float gravity =1f;
-    float friction = 0.99f;
+    float gravity =0.5f;
+    //float friction = 0.99f;
 
     public Player() {
         super();
@@ -28,7 +28,7 @@ public class Player extends GameObject {
             }
         }
         if (isFalling == false){
-            this.velocity.y = -this.velocity.y * friction;
+            this.velocity.y = -this.velocity.y;
             isFalling = true;
         }
         else{

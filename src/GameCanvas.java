@@ -36,7 +36,7 @@ public class GameCanvas extends JPanel {
         this.background = new Background(
                 this.loadImage("resources/background.jpg")
         );
-        this.player = new Player(new Vector2D(300,200), this.loadImage("resources/player.png"));
+        this.player = new Player(new Vector2D(300,400), this.loadImage("resources/player.png"));
 //        this.floatingIsland = new FloatingIsland(new Vector2D(200,600),
 //                this.loadImage("resources/Island1.png"),
 //                700,
