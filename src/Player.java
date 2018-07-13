@@ -5,8 +5,9 @@ public class Player extends GameObject {
     public BufferedImage image;
     public boolean onIsland = false;
     public boolean isFalling = true;
-    public int distanceJumping = 0;
-    //public Vector2D templeVelocity = new Vector2D();    tạm thời chưa dùng đến
+
+    float gravity =1f;
+    float friction = 0.99f;
 
     public Player() {
         super();
@@ -20,45 +21,20 @@ public class Player extends GameObject {
         this.height = 222 / 4;
     }
 
-    public void run(FloatingIsland floatingIsland) {
-//        if (KeyboardInput.instance.isRight) {
-//            this.position.x += this.velocity.x;
-//            this.onIsland=false;
-//        }
-//        if (KeyboardInput.instance.isLeft) {
-//            this.position.x -= this.velocity.x;
-//            this.onIsland=false;
-//        }
-//        if (KeyboardInput.instance.isUp) {
-//            this.position.y -= this.velocity.y;
-//            this.onIsland=false;
-//        }
-//        if (KeyboardInput.instance.isDown) {
-//            //this.position.y += this.velocity.y;
-//            if(this.onIsland==false){
-//                this.position.y += this.velocity.y;
-//            }else{
-//                int velo = (int)floatingIsland.position.y-(int)this.position.y-(int)this.height;
-//                this.position.y += velo;
-//                this.onIsland=false;
-//            }
-//        }
-        if (KeyboardInput.instance.isSpace) {
-            this.position.addUp(this.velocity);
-            this.position.subtractBy(this.velocity);
+    public void run() {
+        for (int i=0; i<GameObjectManager.instance.list.size(); i++){
+            if(OnIsland.checkOnIsland(this,(FloatingIsland)GameObjectManager.instance.list.get(i))){
+                this.isFalling = false;
+            }
         }
-        if (this.isFalling == true){
-            this.position.y += this.velocity.y;
+        if (isFalling == false){
+            this.velocity.y = -this.velocity.y * friction;
+            isFalling = true;
         }
         else{
-            //this.position.subtractBy(this.velocity);
-            this.position.y -= this.velocity.y;
-            if(this.distanceJumping >= 150){
-                this.isFalling = true;
-                distanceJumping = 0;
-            }
-            this.distanceJumping += this.velocity.y;
+            this.velocity.y +=  gravity;
         }
+        this.position.y += this.velocity.y;
     }
 
     public void render(Graphics graphics) {

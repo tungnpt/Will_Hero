@@ -37,12 +37,26 @@ public class GameCanvas extends JPanel {
                 this.loadImage("resources/background.jpg")
         );
         this.player = new Player(new Vector2D(300,200), this.loadImage("resources/player.png"));
-        this.floatingIsland = new FloatingIsland(new Vector2D(200,600),
-                this.loadImage("resources/Island4.png"),
-                1200,
-                400);
-
-        //GameObjectManager.instance.add(new CreateIsland());
+//        this.floatingIsland = new FloatingIsland(new Vector2D(200,600),
+//                this.loadImage("resources/Island1.png"),
+//                700,
+//                400);
+//        GameObjectManager.instance.add(floatingIsland);
+//        this.floatingIsland = new FloatingIsland(new Vector2D(1100,600),
+//                this.loadImage("resources/Island2.png"),
+//                800,
+//                400);
+//        GameObjectManager.instance.add(floatingIsland);
+//        this.floatingIsland = new FloatingIsland(new Vector2D(2100,600),
+//                this.loadImage("resources/Island3.png"),
+//                1200,
+//                400);
+//        GameObjectManager.instance.add(floatingIsland);
+//        this.floatingIsland = new FloatingIsland(new Vector2D(3500,600),
+//                this.loadImage("resources/Island4.png"),
+//                1200,
+//                400);
+//        GameObjectManager.instance.add(floatingIsland);
     }
 
     @Override
@@ -51,20 +65,21 @@ public class GameCanvas extends JPanel {
     }
 
     public void runAll(){
-        if(OnIsland.checkOnIsland(player,floatingIsland)){
-            //player.onIsland = true;
-            player.isFalling = false;
-        }
+//        if(OnIsland.checkOnIsland(player,floatingIsland)){
+//            //player.onIsland = true;
+//            player.isFalling = false;
+//        }
 
-        this.player.run(floatingIsland);
-        this.floatingIsland.run();
-        //GameObjectManager.instance.runAll();
+
+//        this.floatingIsland.run();
+        GameObjectManager.instance.runAll();
+        this.player.run();
     }
 
     public void renderAll() {
         this.background.render(graphics);
-        this.floatingIsland.render(graphics);
-       // GameObjectManager.instance.renderAll(graphics);
+        //this.floatingIsland.render(graphics);
+        GameObjectManager.instance.renderAll(graphics);
         this.player.render(graphics);
         this.repaint();
     }
