@@ -24,6 +24,7 @@ public class GameObjectManager {
                 this.loadImage("resources/Island1.png"),
                 700,
                 400);
+        floatingIsland.enemies.clear();
         list.add(floatingIsland);
         floatingIsland = new FloatingIsland(new Vector2D(1100,600),
                 this.loadImage("resources/Island2.png"),
@@ -47,7 +48,7 @@ public class GameObjectManager {
     }
 
     public void runAll() {
-        if (KeyboardInput.instance.isSpace) {
+        //if (KeyboardInput.instance.isSpace) {
             this.biggestPositionX = (int) this.list.get(0).position.x + this.list.get(0).width;
             for (int i=0; i<list.size(); i++){
                 if ((int)this.list.get(i).position.x + this.list.get(i).width > this.biggestPositionX){
@@ -60,7 +61,7 @@ public class GameObjectManager {
 //            this.list.addAll(this.tempList);
 //            this.tempList.clear();
             System.out.println(this.list.size());
-        }
+        //}
     }
 
     public void renderAll(Graphics graphics) {

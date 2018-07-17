@@ -6,6 +6,8 @@ public class Player extends GameObject {
     public boolean onIsland = false;
     public boolean isFalling = true;
 
+    public BoxCollider boxCollider;
+
     float gravity =0.5f;
     //float friction = 0.99f;
 
@@ -19,22 +21,28 @@ public class Player extends GameObject {
         this.velocity = new Vector2D(5f, 5f);
         this.width = 310 / 4;
         this.height = 222 / 4;
+
+        this.boxCollider = new BoxCollider(this.width, this.height);
     }
 
     public void run() {
         for (int i=0; i<GameObjectManager.instance.list.size(); i++){
-            if(OnIsland.checkOnIsland(this,(FloatingIsland)GameObjectManager.instance.list.get(i))){
+//            if(OnIsland.checkOnIsland(this,(FloatingIsland)GameObjectManager.instance.list.get(i))){
+//////                this.isFalling = false;
+//            }
+            if(this.boxCollider.checkCollision(((FloatingIsland) GameObjectManager.instance.list.get(i)).boxCollider)){
                 this.isFalling = false;
-            }
         }
-        if (isFalling == false){
-            this.velocity.y = -this.velocity.y;
-            isFalling = true;
+        }
+        if (!isFalling){
+                this.velocity.y = -this.velocity.y;
+                isFalling = true;
         }
         else{
             this.velocity.y +=  gravity;
         }
         this.position.y += this.velocity.y;
+        this.boxCollider.position.set(this.position);
     }
 
     public void render(Graphics graphics) {
